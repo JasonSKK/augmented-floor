@@ -1,0 +1,58 @@
+#+TITLE: Footstep sound categorisation
+
+* Categories mainly suggested by Turchet et al. [1] & their features
+
+
+**  General facts
+
+     *sound is dependent:*
+    + on different kind of shoes
+    + surface material
+
+** Surfaces
+*** *_Solid ground surface_*
+  + short in duration
+  + sharp temporal onset and relatively rapid decay
+    + metal
+    + wood
+    + creaking wood
+    + mud [4]
+    + linoleum (Greek: mousamas) [4]
+
+  + common synthesise technique: lumped source-filter model*
+
+  /*an impulsive excitation s(t) (Impulse: white noise), modelling the physics of contact, is passed through a linear filter h(t), modelling the response of the vibrating object as y(t) = s(t) * h(t). (oversimplified, lin comb filter - with impulse as input).  More info for implementation in the paper./
+
+*** *_Aggregate ground surface_*
+ + it is suggested that aggregate ground surface possess a granular structure (gravel etc.)
+   + gravel
+   + sand
+   + snow
+   + forest underbrush
+   + dry leaves
+   + dirt + pebbles
+   + high grass
+   + aluminium cans crushed [3]*
+ + suggested synthesis technique: physically informed sonic models (PhiSM) algorithm** [2].
+
+/*the PhiSM simulates particle interactions by using a stochastic parametrization. This means that the different particles do not have to be modelled explicitly, but only the probability that particles will create some noise is simulated. Similar to a particle system./
+
+/**This sound is the result of a composition of single crumpling events, each one of those occurring when, after the limit of bending resistance, one piece of the surface forming the cylinder splits into two facets as a consequence of the force applied to the can./
+
+*** Examples
+As an example, the sound produced while walking on dry leaves is a combination of granular sounds with long duration both at low and high frequencies, and noticeable random sounds with not very high density that give to the whole sound a crunchy aspect. Another example is the sound of walking on gravel, composed by the contribution of the sounds of stones of different dimensions, which when colliding give rise to different random sounds with different features.
+
+The amplitude of the different components were also appropriately weighed, according to the same contribution present in the corresponding real sounds. Finally, a scaling factor for the sub-components volumes gives to the whole sound an appropriate volume, in order to recreate a similar sound level which it wouldhappen during a real footstep on each particular material.
+
+* References
+
+[1] Turchet, L., Serafin, S., Dimitrov, S., & Nordahl, R. (2010). Physically Based Sound Synthesis and Control of
+Footsteps Sounds. In A. Sontacchi, H. Pomberger, & F. Zotter (Eds.), Proceedings of the 13th International
+Conference on Digital Audio Effects (DAFx-10) (1 ed., Vol. 1, pp. 161-168).
+https://vbn.aau.dk/ws/files/37619504/Turchet_Serafin_Dimitrov_Nordahl_DAFx10_P50.pdf
+
+[2] P.R. Cook, “Physically Informed Sonic Modeling (PhISM): Synthesis of Percussive Sounds,” Computer Music Journal, vol. 21, no. 3, pp. 38–49, 1997.
+
+[3] Fontana, F., & Bresin, R. (2003, May). Physics-based sound synthesis and control: crushing, walking and running by crumpling sounds. In Proc. Colloquium on Musical Informatics (pp. 109-114).
+
+[4] Bresin, R., de Witt, A., Papetti, S., Civolani, M., & Fontana, F. (2010). Expressive sonification of footstep sounds. Proceedings of ISon, 2010, 51-54.

@@ -1,0 +1,106 @@
+% Created 2021-10-19 Tue 12:36
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Jason SK}
+\date{\today}
+\title{Footstep sound categorisation}
+\hypersetup{
+ pdfauthor={Jason SK},
+ pdftitle={Footstep sound categorisation},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.0.6)},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Categories mainly suggested by Turchet et al. [1] \& their features}
+\label{sec:org6143bb4}
+
+
+\subsection{General facts}
+\label{sec:orgf14e44c}
+
+\textbf{sound is dependent:}
+\begin{itemize}
+\item on different kind of shoes
+\item surface material
+\end{itemize}
+
+\subsection{Surfaces}
+\label{sec:orgad35c4a}
+\subsubsection{\textbf{\underline{Solid ground surface}}}
+\label{sec:orgd48f19a}
+\begin{itemize}
+\item short in duration
+\item sharp temporal onset and relatively rapid decay
+\begin{itemize}
+\item metal
+\item wood
+\item creaking wood
+\item mud [4]
+\item linoleum (Greek: mousamas) [4]
+\end{itemize}
+
+\item common synthesise technique: lumped source-filter model*
+\end{itemize}
+
+\emph{*an impulsive excitation s(t) (Impulse: white noise), modelling the physics of contact, is passed through a linear filter h(t), modelling the response of the vibrating object as y(t) = s(t) * h(t). (oversimplified, lin comb filter - with impulse as input).  More info for implementation in the paper.}
+
+\subsubsection{\textbf{\underline{Aggregate ground surface}}}
+\label{sec:orgde74350}
+\begin{itemize}
+\item it is suggested that aggregate ground surface possess a granular structure (gravel etc.)
+\begin{itemize}
+\item gravel
+\item sand
+\item snow
+\item forest underbrush
+\item dry leaves
+\item dirt + pebbles
+\item high grass
+\item aluminium cans crushed [3]*
+\end{itemize}
+\item suggested synthesis technique: physically informed sonic models (PhiSM) algorithm** [2].
+\end{itemize}
+
+\emph{*the PhiSM simulates particle interactions by using a stochastic parametrization. This means that the different particles do not have to be modelled explicitly, but only the probability that particles will create some noise is simulated. Similar to a particle system.}
+
+\emph{**This sound is the result of a composition of single crumpling events, each one of those occurring when, after the limit of bending resistance, one piece of the surface forming the cylinder splits into two facets as a consequence of the force applied to the can.}
+
+\subsubsection{Examples}
+\label{sec:org50c7898}
+As an example, the sound produced while walking on dry leaves is a combination of granular sounds with long duration both at low and high frequencies, and noticeable random sounds with not very high density that give to the whole sound a crunchy aspect. Another example is the sound of walking on gravel, composed by the contribution of the sounds of stones of different dimensions, which when colliding give rise to different random sounds with different features.
+
+The amplitude of the different components were also appropriately weighed, according to the same contribution present in the corresponding real sounds. Finally, a scaling factor for the sub-components volumes gives to the whole sound an appropriate volume, in order to recreate a similar sound level which it wouldhappen during a real footstep on each particular material.
+
+\section{References}
+\label{sec:orgef4052e}
+
+[1] Turchet, L., Serafin, S., Dimitrov, S., \& Nordahl, R. (2010). Physically Based Sound Synthesis and Control of
+Footsteps Sounds. In A. Sontacchi, H. Pomberger, \& F. Zotter (Eds.), Proceedings of the 13th International
+Conference on Digital Audio Effects (DAFx-10) (1 ed., Vol. 1, pp. 161-168).
+\url{https://vbn.aau.dk/ws/files/37619504/Turchet\_Serafin\_Dimitrov\_Nordahl\_DAFx10\_P50.pdf}
+
+[2] P.R. Cook, “Physically Informed Sonic Modeling (PhISM): Synthesis of Percussive Sounds,” Computer Music Journal, vol. 21, no. 3, pp. 38–49, 1997.
+
+[3] Fontana, F., \& Bresin, R. (2003, May). Physics-based sound synthesis and control: crushing, walking and running by crumpling sounds. In Proc. Colloquium on Musical Informatics (pp. 109-114).
+
+[4] Bresin, R., de Witt, A., Papetti, S., Civolani, M., \& Fontana, F. (2010). Expressive sonification of footstep sounds. Proceedings of ISon, 2010, 51-54.
+\end{document}

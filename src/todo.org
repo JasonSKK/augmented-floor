@@ -1,0 +1,150 @@
+* TODO
+
++a. volume fader for OD & aug GUI param+
+b. test each sound and configure each preset file with the correct value for 1 volume, 2 thresh, 3 release time
+
+FIX!!!: add volume control for outputVol in OD within config files
+when set outputVol in the preset only 1 global is set.  I need seperate for OD and AUG for the experiment. Bc it will play OD and Aug
++Alternatively, I just create a random array with all the settings for each sound+
++e.g. [sound1 aug, sound6 OD, sound 2 OD, sound 7 aug] and keep that random list+
+
+
+* RH
+
+** Aug
+
+1. find better sample water, more pitch variations`
+
+2. = pitch variation kraftwerk => pitch modulation using the envelope
+= star wars
+
+3. feature:
+
+
+1. interface, install touchosc on the ipad, alternatively ask mi prof for the other software (alternative to touchosc))
+
+2. learning phase => shuffle through the sounds (10 sec each sound)
+
+mobmuplat = touchosc alternative
+
+
+* old done RH
+  ACTIONS:
+  lets start w OD:
+  1. added HPF before squaring -- immediate result
+  2. LPF played around (200-400), dont know if there is need for some kind of tuning regarding the other parameter but it was not able to detect the onsets.
+  3. sqrt for amplitude correction -- explosions, worked perfect, fantastik
+
+  AUG:
+  1. included a half wave rectifier after input-HPF-rectifier -- it also had positive result in the amplitude range. I felt that the amplitude I am getting is more "controlled" an in a logical range.
+  2. tried out the sqrt and the natural logarithm, however it reduced the amplitude range. soft and hard steps were comparable. Half wave rect if working fine at this point.
+
+
+  Apart from the AUG & OD algo, implemented an evaluation method for the preset playback, based on a random latin square, that I produced once and then saved.  Each participant has a different order of presets in that way participants will not be biased. Maybe, some sound order can produce un-desirable effects, e.g. a very good preset after another one that it doesn't work that well, resulting to biased - very bad rating for the bad preset.
+
+
+
+
+
+  OD
+  +1. first filter out HPF filter before squaring => get rid of the Low frequency noise+ // worked perfect, it was fantastic
+  +2. then use LPF (cutoff 200 hz - 400 hz around)+ did not detect onsets ...
+  +3. sqrt of the signal -- instead of slope try it out --+ fantastic for amplitude correction - prevent explosions
+  +4. take out slope and use --+
+
+
+  AUG
+  +5. use half way rectif after HPF filter augmentation // try it out+ // works gr8
+  +6. APLITUDE CONTROL low amplitude signals, ln(x(t) = aug, try sqrt, or logarithm+ // differences were negligible -- after half wave rect made it works better regarding amplitude
+
+  7. LPF to the playback signa, configured by the input signal -- find a parameter that will control the output signal. if TAK! signal fast => more high freqs & if slow signal = LPF filtered dulled
+
+
+* preset calibration settings
+** OD
+1. cement
+thresh: -14, output vol 1 | 0.13:
+
+2. giant steps
+pre gain: 31.82, thresh: 0, output vol: 1.0, releaseTime: 0.9091, cutoff HPF: 970, theshLo: 10, threshHi: 10
+
+3. kraftwerk
+pregain: 47, thresh: 0 , output vol: 0.4
+
+4. star wars
+pregain: 47, thresh: 0 , output vol: 0.6
+
+5. snow
+thresh: -14, output vol: 0.4
+
+6. water
+thresh: -14, output vol: 0.4
+
+7. stepsOnMars
+thresh: 0, output vol: 0.55
+
+8. gravel
+thresh: -14, output vol: 0.4
+
+** Augmentation
+1. cement
+thresh: -30, output vol:0.5 , releaseTime: 0.25.
+
+2. giant steps
+pregain: 17, thresh: -30, output vol: 0.3, releaseTime: 0.3030.
+
+3. kraftwerk
+thresh: -30 , output vol: 0.12, releaseTime: .
+
+4. star wars
+thresh: -30 , output vol: 0.15, releaseTime: 0.28.
+
+5. snow
+thresh: -30, output vol: 0.3, releaseTime: 0.2121.
+
+6. water
+thresh: -42, output vol: 0.3, releaseTime: 0.333.
+
+7. stepsOnMars
+thresh: -30, output vol: 0.3, releaseTime: 0.1818.
+
+8. gravel
+thresh: -30, output vol: 0.3, releaseTime: 0.1818.
+
+* done priorities
+
+CODE:
++FIX: WHEN all sounds will be ready, create speech synthesis (end of the experiment), and in the OSCdef("next") = add => if(val == 1 && ~presetNum < !!!Number of sounds!!!) {play "end of the experiment"}+
+
++2. fix onset detection explosion, or go back to the prev ver and calibrate in SC+
+
+DONE:
++a. create one artificial sound (low frequency around 50-100hz).+
++a. re-record strasse (sound1) with better settings+
++b. cut the sounds for onset detection+
++c. record gravel, sit on a chair and move your legs+
++FIX: file write fucked up - does not writes first preset+
++! *TRY* aug cement instead of 1st sound+
++RECORDINGS:+
++1. work on the sounds+
++a. record 7th and 8th sound on the floor+
++b. cut OD 7th & 8th+
+
+* recorded parameters when aug played -- in the recordings dir
+augmentation
+1. snow reltime 0.1, exp thresh -29, pregain: 22
+2. water pre gain: 23, exp thresh -29, rel time 0.35, smoothing 0.3636
+3. elephant pregain 38, exp th -29, rel. 0.35
+4. kraftwerk pre 29, thresh -29, rel 0.25,
+5. star wars: pre gain 20, thresh-23, rel, 0.3
+6. cement rel time,  0.1818    exp thresh, -33   pregain: 80
+7. steps on Mars rel time, 0.25      exp -40 thresh,  ,  pregain 17
+   1. gravel rel time, 0.1818     exp thresh, -35  pregain 80
+
+* reports
+
+-- Channels for low signal side: 8, 12, 10, 16, 19 --
+
+1. observed the init signal and tested
+   a. noise is around -62db~
+   b. the most light step is around -47db
