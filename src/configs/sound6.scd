@@ -17,6 +17,8 @@ d.cutoffAugSt = 320.0;
 d.releaseTime = 0.333;
 d.lpfAugSt = 19999;
 d.amplitudeLPFLo = 10000;
+d.lpfHiLimit = 9000;
+d.compressorThreshold = 2;
 
 // master
 d.masterVol = (18.0.neg);
@@ -63,7 +65,7 @@ d.rateHi = 1.0;
 ~soundAugSt = Buffer.readChannel(s, ~currPath +/+ "/sounds/augmentation-sounds/waterStream.wav", channels:0);
 fork{// needs some time to load n set buffer
 	0.25.wait;
-	e.augmentedSteps.set(\bufnum, ~soundAugSt, \cutoffLPF, d.amplitudeLPFLo);
+	e.augmentedSteps.set(\bufnum, ~soundAugSt, \cutoffLPF, d.amplitudeLPFLo, \compThresh, d.compressorThreshold, \lpfHiLimit, d.lpfHiLimit);
 };
 
 

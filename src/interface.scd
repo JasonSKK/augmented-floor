@@ -206,7 +206,7 @@ k[5].action_({
     ~text[1].bounds_(Rect(10, 40, 90, 20)).string_("Pre Gain");
     ~text[2].bounds_(Rect(10, 80, 90, 20));
 	~text[4].bounds_(Rect(305, 40, 90, 20)).string_("cutoff HPF");
-	~text[5].bounds_(Rect(10, 120, 90, 20)).string_("TBOD thresh");
+	~text[5].bounds_(Rect(10, 120, 90, 20)).string_("OD threshold");
 	~text[6].bounds_(Rect(10, 160, 0, 0)).string_("thresHi"); // size bounds 0
 	~text[14].bounds_(Rect(305, 80, 90, 20)).string_("ReleaseTime");
 
@@ -553,6 +553,8 @@ k[5].action_({
 				\outputVol, d.outputVolAugSt,
 				\rateLo, d.rateLo,
 				\rateHi, d.rateHi,
+				\compThresh, d.compressorThreshold,
+				\lpfHiLimit, d.lpfHiLimit,
 			]);
 		},{
 			e.augmentedSteps.free; // free synth when aumentation button is OFF state
@@ -596,29 +598,32 @@ k[5].action_({
 	// START experiment button
 	~start = Button(w, Rect(10,570,250,30)).states_([
 		["START EXPERIMENT", Color.white, Color.red(0.4)],
-		["STOP" , Color.red, Color.gray(0.8)],
+		//["STOP" , Color.red, Color.gray(0.8)],
 	]).font_(Font("Times New Roman", 12)).action_({
 		|obj|
-		if(obj.value == 1, { // if START EXPERIMENT button is ON state
-			
-			~sample = 0; // set sample to first sound when 2nd participant
-			{~preset.valueAction_(~soundCollection[~participantID][~sample][0])}.defer(0.0); // start with the first sound of the LATIN SQUARE ARRAY
+		//if(obj.value == 1, { // if START EXPERIMENT button is ON state
+
+		// participant number
+{~participants.valueAction_(~participantID)}.defer(0.0);
+		~sample = 0; // set sample to first sound when 2nd participant
+		{~preset.valueAction_(~soundCollection[~participantID][~sample][0])}.defer(0.0); // start with the first sound of the LATIN SQUARE ARRAY
+		
 			~algorithm.value(~soundCollection[~participantID][~sample][1]); // switch select aug or od according to the symbol value within the latin square array
-		})
+		//})
 	});
 
 	// learning phase button
 	~learningPhButton =  Button(w,
 		Rect(10,630,250,30)).states_([
-		["LEARNING PHASE", Color.white, Color.cyan(0.4)],
-			["STOP LEARNING PHASE" , Color.cyan(0.6), Color.gray(0.8)],
+	["LEARNING PHASE", Color.white, Color.cyan(0.4)],
+			/*["STOP LEARNING PHASE" , Color.cyan(0.6), Color.gray(0.8)],*/
 	]).font_(Font("Times New Roman", 12)).action_({
 		|obj|
-		if(obj.value == 1, {
+		//if(obj.value == 1, {
 			~learningPhase.value();
-		},{
-			~learningPhase.stop;
-		});
+		//},{
+		//~learningPhase.stop;
+		//});
 	});
 		
 });

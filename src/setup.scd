@@ -83,6 +83,8 @@ d.cutoffAugSt = 320.0;
 d.releaseTime = 0.25;
 d.lpfAugSt = 19999;
 d.amplitudeLPFLo = 100;
+d.lpfHiLimit = 13000;
+d.compressorThreshold = 2.dbamp;
 
 // master
 d.masterVol = (18.0.neg);
@@ -101,7 +103,10 @@ fork{
 	s.sync;
 	~voiceMsg = Buffer.read(s, (~currPath +/+ "sounds/voiceMsg.wav").standardizePath);
 	~voiceMsgEnd = Buffer.read(s, (~currPath +/+ "sounds/voiceMsgEnd.wav").standardizePath);
+	~voiceMsgLPStart = Buffer.read(s, (~currPath +/+ "sounds/startLearningPhase.wav").standardizePath);
 	~voiceMsgLPEnd = Buffer.read(s, (~currPath +/+ "sounds/endLearningPhase.wav").standardizePath);
+	~voiceMsgLPRepeat = Buffer.read(s, (~currPath +/+ "sounds/learningPhaseRepeat.wav").standardizePath);	
+	
 	0.5.wait;
 	s.sync;
 

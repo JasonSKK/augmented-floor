@@ -80,7 +80,7 @@ SynthDef(\onsetDetection, {
 
 		cutoff = LinExp.ar(ampDet, 1e-4, 1.0, d.amplitudeLPFLo, 13000);
 		// cutoff.poll(label:\cutoffOD);
-		sig = LPF.ar(sig, cutoff.lag(0.06));
+		sig = LPF.ar(sig, cutoff.lag(0.86));
 		
 		sig = HPF.ar(sig, 30); // 20 HPF filter
 		sig = LeakDC.ar(sig, 0.995); // DC
@@ -99,7 +99,7 @@ OSCdef(\amplitudeUpdate, {| msg, time, addr, recvPort, initAmp = 0.1, outputVol 
 	//msg.postln;
 	amplitude = msg[3];
 	amplitude = amplitude.sqrt;
-	amplitude.postln;
+	//amplitude.postln;
 	//amplitude = amplitude.explin("whateva", "whateva", 0.0, 1.0);
 
 	if(amplitude > 0.1, {
@@ -115,7 +115,7 @@ OSCdef(\amplitudeUpdate, {| msg, time, addr, recvPort, initAmp = 0.1, outputVol 
 	};
 	);
 	
-	[\velUpdate, amplitude].postln;
+	//[\velUpdate, amplitude].postln;
 }, '/tr');
 
 "ONSET DETECTION PATCH LOADED".postln;

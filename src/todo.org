@@ -1,5 +1,10 @@
 * TODO
+1. add voice where needed
+2. apply latin squares, 4 the number of participants (20?)
 
+
+
+* DONE
 +a. volume fader for OD & aug GUI param+
 b. test each sound and configure each preset file with the correct value for 1 volume, 2 thresh, 3 release time
 
@@ -9,16 +14,16 @@ when set outputVol in the preset only 1 global is set.  I need seperate for OD a
 +e.g. [sound1 aug, sound6 OD, sound 2 OD, sound 7 aug] and keep that random list+
 
 
-* RH
 
+* RH
 ** Aug
 
-1. find better sample water, more pitch variations`
++1. find better sample water, more pitch variations`+
 
-2. = pitch variation kraftwerk => pitch modulation using the envelope
-= star wars
++2. = pitch variation kraftwerk => pitch modulation using the envelope+
++= star wars+
 
-3. feature:
++3. feature:+
 
 
 1. interface, install touchosc on the ipad, alternatively ask mi prof for the other software (alternative to touchosc))
@@ -26,7 +31,6 @@ when set outputVol in the preset only 1 global is set.  I need seperate for OD a
 2. learning phase => shuffle through the sounds (10 sec each sound)
 
 mobmuplat = touchosc alternative
-
 
 * old done RH
   ACTIONS:
@@ -58,7 +62,6 @@ mobmuplat = touchosc alternative
   +6. APLITUDE CONTROL low amplitude signals, ln(x(t) = aug, try sqrt, or logarithm+ // differences were negligible -- after half wave rect made it works better regarding amplitude
 
   7. LPF to the playback signa, configured by the input signal -- find a parameter that will control the output signal. if TAK! signal fast => more high freqs & if slow signal = LPF filtered dulled
-
 
 * preset calibration settings
 ** OD

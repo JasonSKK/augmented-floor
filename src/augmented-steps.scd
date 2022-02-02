@@ -1,4 +1,4 @@
-SynthDef(\augmentedSteps, {| out = 0, bufnum = 0, amp = 1, gain = 50, expThresh = (45.neg), smoothing = 0.001, cutoff = 15, masterAmp = 1, releaseTime = 1.0, cutoffLPF = 100, outputVol = 1, rateLo, rateHi |
+SynthDef(\augmentedSteps, {| out = 0, bufnum = 0, amp = 1, gain = 50, expThresh = (45.neg), smoothing = 0.001, cutoff = 15, masterAmp = 1, releaseTime = 1.0, cutoffLPF = 100, outputVol = 1, rateLo, rateHi, compThresh = 2, lpfHiLimit = 13000 |
 	var in, step, sig, hpf, envfollower, filter, expander, mix, tsub, lpf, smoothedCutoff, rate;
 
 	in = SoundIn.ar((0..23)); // input 24
@@ -9,7 +9,7 @@ SynthDef(\augmentedSteps, {| out = 0, bufnum = 0, amp = 1, gain = 50, expThresh 
 	mix = Mix(envfollower)  * gain; // mix all channels togeather after HPF and env follower
 
 	smoothedCutoff = Amplitude.kr(
-		mix.linlin(2e-3, 3e-2, cutoffLPF, 13000), 0.0, 1.25
+		mix.linlin(2e-3, 3e-2, cutoffLPF, lpfHiLimit), 0.0, 1.25
 	);
 	//smoothedCutoff.poll(label: \cutoffAugSt);
 	
@@ -39,16 +39,20 @@ SynthDef(\augmentedSteps, {| out = 0, bufnum = 0, amp = 1, gain = 50, expThresh 
 		doneAction:0) * amp * 0.75;
 
 	// LPF filtering -- excitation cutoff freq parametrisation
-	sig = LPF.ar(sig, smoothedCutoff.lag(0.05)); // lpf -- mod by amplitude
-	
+	sig = LPF.ar(sig, smoothedCutoff.lag(0.85)); // lpf -- mod by amplitude
+	//compThresh = 82.neg; // MouseX.kr(90, -1).neg;
+	sig = Compander.ar( // dynamic compression
+		in: sig,
+		control: sig, 
+		thresh: compThresh.dbamp,
+		slopeBelow: 1,
+		slopeAbove: 0.9,
+		clampTime:  0.01,
+		relaxTime:  0.01
+		);
 	sig = sig * masterAmp;
 	sig = sig * outputVol * 20;
     Out.ar(out, sig!2);
 }).add;
 
 "AUGMENTATION PATCH LOADED".postln;
-
-//test play
-//e = ();
-//e.augmentedSteps = Synth(\augmentedSteps);
-
