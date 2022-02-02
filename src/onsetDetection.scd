@@ -51,9 +51,9 @@ SynthDef(\onsetDetection, {
 	var reg;
 	reg = SynthDef(\presetPlayback, {
 		arg
-		preGain = 1, amp = 0.1, masterAmp = 1.0, outputVol = d.outputVol, cutoffLPF = d.amplitudeLPFLo, rateLo = d.rateLo, rateHi = d.rateHi, on = 0;
-		var	trig, sig, buffer, bufCollection, ampDet, env, nextVoice, spec, cutoff, rate;
-		bufCollection = ~soundOD;
+		preGain = 1, amp = 0.1, masterAmp = 1.0, outputVol = d.outputVol, cutoffLPF = d.amplitudeLPFLo, rateLo = d.rateLo, rateHi = d.rateHi, on = 0, bufCollection;
+		var	trig, sig, buffer, /*bufCollection,*/ ampDet, env, nextVoice, spec, cutoff, rate;
+		//bufCollection = ~soundOD;
 
 		trig = In.ar(~velBus) * preGain;
 

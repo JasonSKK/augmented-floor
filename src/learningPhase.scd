@@ -10,9 +10,9 @@ fork{
 	8.wait;
 	
 	i = 0; // set preset counter to 0
-	order =
+	
 	// learning phase order
-	~soundCollection =
+	order =
 	[
 		["empty", 0],
 		[[2, \aug], [5, \aug], [1, \aug], [7, \aug], [3, \aug], [8, \aug], [6, \aug], [4, \aug],  [7, \od], [4, \od], [1, \od], [2, \od], [5, \od], [6, \od], [8, \od], [3, \od]].scramble; // randomise order for each participant
@@ -21,12 +21,12 @@ fork{
 	17.do{
 		var preset, algorithm, looping;
 		if(
-			i <= (~soundCollection[1].size - 1), {
+			i <= (order[1].size - 1), {
 				~soundOD.collect{|i| i.free}; // free Buffer collection -- OD
 				~soundAugSt.free; // free Buffer collection -- AUG
 				
-				preset = ~soundCollection[1][i][0];
-				algorithm = ~soundCollection[1][i][1];
+				preset = order[1][i][0];
+				algorithm = order[1][i][1];
 				defer{~preset.valueAction_(preset)}; // set preset
 				~algorithm.value(algorithm); // set algorithm of preset
 			},{
@@ -45,7 +45,12 @@ fork{
 				// MSG2 "LEARNING PHASE REPEAT"
 				e.voicePlayback.set(\gate, 0);
 				e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgLPRepeat, \amp,1]); // play new one
-				
+
+				// stop all synths
+				defer{~preset.valueAction_(0); // set preset to number 0 -- silence
+					~playOD.valueAction_(0); // switch off OD button
+					~playAugSt.valueAction_(0); // switch off AUG button
+				};
 			}
 		);
 		i = i + 1; // next preset -- learning phase collection

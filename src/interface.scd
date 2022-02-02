@@ -5,7 +5,7 @@ s.waitForBoot({
 
     w = Window("Augmented steps").alwaysOnTop_(false);//Setting Up the Window
     w.bounds_(Rect(0, 180, 600, 710));
-    w.view.background_(Color(0.0, 0.2, 0.4, 0.866));
+    w.view.background_(Color(0.1, 0.2, 0.2, 0.66));
     w.front;
 
 	//Sliders
@@ -465,11 +465,9 @@ k[5].action_({
 	.font_(Font("Times New Roman", 14))
 	.setColors(Color(1.0,1.0,0.7,0.5), Color.black)
 	.action_({ |ez|
-		var temp, button;
-		~soundOD.collect{|i| i.free}; // free Buffer collection -- OD
-		~soundAugSt.free; // free Buffer collection -- AUG
-		
+		var temp, button;		
 		fork{
+			
 			// load preset
 			~presetNum = ez.value;
 			
@@ -487,7 +485,7 @@ k[5].action_({
 				~synthReg.value; // reload synthdef
 				0.1.wait;
 				e.sound = Synth(\presetPlayback, args:[
-					\bufnums, ~soundOD,
+					\bufCollection, ~soundOD,
 					\masterAmp, 1,
 					\outputVol, d.outputVolOD,
 					\rateLo, d.rateLo,
@@ -525,7 +523,7 @@ k[5].action_({
 				\rateLo, d.rateLo,
 				\rateHi, d.rateHi,
 			], addAction:\addToHead);
-			e.sound = Synth(\presetPlayback, args:[\masterAmp, 1, \outputVol, d.outputVolAugSt], addAction: \addToTail); // start playback synth
+			e.sound = Synth(\presetPlayback, args:[\masterAmp, 1, \bufCollection, ~soundOD, \outputVol, d.outputVolAugSt], addAction: \addToTail); // start playback synth
 		},{
 
 			e.sound.free; // free buf playback synth
@@ -555,6 +553,7 @@ k[5].action_({
 				\rateHi, d.rateHi,
 				\compThresh, d.compressorThreshold,
 				\lpfHiLimit, d.lpfHiLimit,
+				\bufnum, ~soundAugSt
 			]);
 		},{
 			e.augmentedSteps.free; // free synth when aumentation button is OFF state
@@ -585,8 +584,10 @@ k[5].action_({
 			["RATINGS FOR EACH PRESET WRITTEN TO DISK", ~finalRating.collect({|i| i[3]}) ].postln; // post only the rating values
 			~participantID = ez.value.asInteger; // glob var upd
 			[\participantID, "VALUE UPDATE:"+~participantID].postln; // post participantID VALUE
+			0.5.wait;
 			~finalRating = Array(50); // empty rating values for the next participant
 			~sample = 0;
+			// {~preset.valueAction_(0)}.defer(0.0); // when new participant invited set prest to zero
 			{~preset.valueAction_(~soundCollection[~participantID][~sample][0])}.defer(0.0); // start with the first sound of the LATIN SQUARE ARRAY
 			~endFlag = false;
 
@@ -601,15 +602,14 @@ k[5].action_({
 		//["STOP" , Color.red, Color.gray(0.8)],
 	]).font_(Font("Times New Roman", 12)).action_({
 		|obj|
-		//if(obj.value == 1, { // if START EXPERIMENT button is ON state
 
-		// participant number
-{~participants.valueAction_(~participantID)}.defer(0.0);
+		//play voice msg 
+		e.voicePlayback.set(\gate, 0); // release playing synth
+		e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgExpStart, \amp,1]); // play new one
 		~sample = 0; // set sample to first sound when 2nd participant
 		{~preset.valueAction_(~soundCollection[~participantID][~sample][0])}.defer(0.0); // start with the first sound of the LATIN SQUARE ARRAY
-		
-			~algorithm.value(~soundCollection[~participantID][~sample][1]); // switch select aug or od according to the symbol value within the latin square array
-		//})
+		~algorithm.value(~soundCollection[~participantID][~sample][1]); // switch select aug or od according to the symbol value within the latin square array
+
 	});
 
 	// learning phase button

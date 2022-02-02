@@ -4,12 +4,12 @@ s.waitForBoot{
 	
 	s = Server.local;
 	s.options.blockSize = 64;
-	o = Server.default.options;
-	o.inDevice_("Digiface USB (23879888)");
-	o.numInputBusChannels.postln;
-	o.numInputBusChannels = 24;
-	o.numOutputBusChannels = 2;
-	o.numOutputBusChannels.postln;
+	s.options.numBuffers = 100; // increase in case of overload (bufs are freed anyway)
+	s.options.inDevice_("Digiface USB (23879888)");
+	s.options.numInputBusChannels.postln;
+	s.options.numInputBusChannels = 24;
+	s.options.numOutputBusChannels = 2;
+	s.options.numOutputBusChannels.postln;
 	s.options.numWireBufs = 48;
 	s.options.hardwareBufferSize = 64;
 	s.reboot;

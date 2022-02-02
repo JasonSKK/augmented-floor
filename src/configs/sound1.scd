@@ -1,5 +1,8 @@
 // strasse
 
+Buffer.freeAll;
+~voiceBuffersLoad.value();
+
 // load preset config -- update dict
 // onset detection
 d.preGainOD = 80;

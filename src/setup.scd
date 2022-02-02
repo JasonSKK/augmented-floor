@@ -40,6 +40,16 @@ d = (); // preset dict
 	);
 };
 
+// load voice buffers
+~voiceBuffersLoad = {~voiceMsg = Buffer.read(s, (~currPath +/+ "sounds/voiceMsg.wav").standardizePath);
+	~voiceMsgEnd = Buffer.read(s, (~currPath +/+ "sounds/voiceMsgEnd.wav").standardizePath);
+	~voiceMsgLPStart = Buffer.read(s, (~currPath +/+ "sounds/startLearningPhase.wav").standardizePath);
+	~voiceMsgLPEnd = Buffer.read(s, (~currPath +/+ "sounds/endLearningPhase.wav").standardizePath);
+	~voiceMsgLPRepeat = Buffer.read(s, (~currPath +/+ "sounds/learningPhaseRepeat.wav").standardizePath);
+	~voiceMsgExpStart = Buffer.read(s, (~currPath +/+ "sounds/startExpInstructions.wav").standardizePath);
+};
+	
+
 // INIT: environmental vars
 
 ~finalRating = Array(50); // preset rating values
@@ -101,12 +111,7 @@ a.volume = 0;
 fork{
 	0.15.wait;
 	s.sync;
-	~voiceMsg = Buffer.read(s, (~currPath +/+ "sounds/voiceMsg.wav").standardizePath);
-	~voiceMsgEnd = Buffer.read(s, (~currPath +/+ "sounds/voiceMsgEnd.wav").standardizePath);
-	~voiceMsgLPStart = Buffer.read(s, (~currPath +/+ "sounds/startLearningPhase.wav").standardizePath);
-	~voiceMsgLPEnd = Buffer.read(s, (~currPath +/+ "sounds/endLearningPhase.wav").standardizePath);
-	~voiceMsgLPRepeat = Buffer.read(s, (~currPath +/+ "sounds/learningPhaseRepeat.wav").standardizePath);	
-	
+	~voiceBuffersLoad.value();
 	0.5.wait;
 	s.sync;
 

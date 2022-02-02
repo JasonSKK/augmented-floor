@@ -1,4 +1,4 @@
-SynthDef(\augmentedSteps, {| out = 0, bufnum = 0, amp = 1, gain = 50, expThresh = (45.neg), smoothing = 0.001, cutoff = 15, masterAmp = 1, releaseTime = 1.0, cutoffLPF = 100, outputVol = 1, rateLo, rateHi, compThresh = 2, lpfHiLimit = 13000 |
+SynthDef(\augmentedSteps, {| out = 0, bufnum, amp = 1, gain = 50, expThresh = (45.neg), smoothing = 0.001, cutoff = 15, masterAmp = 1, releaseTime = 1.0, cutoffLPF = 100, outputVol = 1, rateLo, rateHi, compThresh = 2, lpfHiLimit = 13000 |
 	var in, step, sig, hpf, envfollower, filter, expander, mix, tsub, lpf, smoothedCutoff, rate;
 
 	in = SoundIn.ar((0..23)); // input 24

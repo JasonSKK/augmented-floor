@@ -69,5 +69,4 @@ fork{// needs some time to load n set buffer
 	e.augmentedSteps.set(\bufnum, ~soundAugSt, \cutoffLPF, d.amplitudeLPFLo, \compThresh, d.compressorThreshold, \lpfHiLimit, d.lpfHiLimit);
 };
 
-
 "Sound 8 is loaded -- gravel".postln;

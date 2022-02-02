@@ -49,7 +49,7 @@ d.rateHi = 1.3;
 	// AUG: output volume
 	~outputVolAugSt_NB.valueAction_(d.outputVolAugSt);
 }.defer(0.0);
-
+	
 //onset detection
 ~soundOD = [
 	Buffer.readChannel(s, ~currPath +/+ "/sounds/onset-detection/stepsOnMars_var01.wav", channels:0),
@@ -68,6 +68,5 @@ fork{// needs some time to load n set buffer
 	0.25.wait;
 	e.augmentedSteps.set(\bufnum, ~soundAugSt, \cutoffLPF, d.amplitudeLPFLo, \compThresh, d.compressorThreshold, \lpfHiLimit, d.lpfHiLimit);
 };
-
 
 "Sound 7 is loaded -- steps on Mars".postln;

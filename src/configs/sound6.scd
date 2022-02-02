@@ -68,7 +68,4 @@ fork{// needs some time to load n set buffer
 	e.augmentedSteps.set(\bufnum, ~soundAugSt, \cutoffLPF, d.amplitudeLPFLo, \compThresh, d.compressorThreshold, \lpfHiLimit, d.lpfHiLimit);
 };
 
-
-//try snow2 if it is better
-
 "Sound 6 is loaded -- water".postln;
