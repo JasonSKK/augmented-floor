@@ -1,10 +1,13 @@
 // giant steps
 
+Buffer.freeAll;
+~voiceBuffersLoad.value();
+
 // load preset config -- update dict
 // onset detection
 d.preGainOD = 90;
 d.expThreshOD = 14.neg;
-d.threshLoOD = 1.0;
+d.threshLoOD = -3.787878787878;
 d.threshHiOD = 31.neg;
 d.cutoffOD = 270.0;
 d.releaseTimeOD = 0.9191;
@@ -61,7 +64,7 @@ d.rateHi = 1.3;
 // augmentation
 ~soundAugSt = Buffer.readChannel(s, ~currPath +/+ "/sounds/augmentation-sounds/giant-step-steady-state.wav", channels:0);
 fork{// needs some time to load n set buffer
-	0.25.wait;
+	0.05.wait;
 	e.augmentedSteps.set(\bufnum, ~soundAugSt, \cutoffLPF, d.amplitudeLPFLo, \compThresh, d.compressorThreshold, \lpfHiLimit, d.lpfHiLimit);
 };
 

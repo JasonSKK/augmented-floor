@@ -5,7 +5,7 @@ s.waitForBoot({
 
     w = Window("Augmented steps").alwaysOnTop_(false);//Setting Up the Window
     w.bounds_(Rect(0, 180, 600, 710));
-    w.view.background_(Color(0.1, 0.2, 0.2, 0.66));
+    w.view.background_(Color(0.0, 0.2, 0.3, 0.86));
     w.front;
 
 	//Sliders

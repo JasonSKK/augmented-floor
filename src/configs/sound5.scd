@@ -1,10 +1,13 @@
 //snow
 
+Buffer.freeAll;
+~voiceBuffersLoad.value();
+
 // load preset config -- update dict
 // onset detection
 d.preGainOD = 80;
 d.expThreshOD = 25.neg;
-d.threshLoOD = 1.0;
+d.threshLoOD = -3.787878787878;
 d.threshHiOD = 1.0;
 d.cutoffOD = 220.0;
 d.releaseTimeOD = 0.1;
@@ -64,7 +67,7 @@ d.rateHi = 1.0;
 //augmentation
 ~soundAugSt = Buffer.readChannel(s, ~currPath +/+ "/sounds/augmentation-sounds/snow.wav", channels:0);
 fork{// needs some time to load n set buffer
-	0.25.wait;
+	0.05.wait;
 	e.augmentedSteps.set(\bufnum, ~soundAugSt, \cutoffLPF, d.amplitudeLPFLo, \compThresh, d.compressorThreshold, \lpfHiLimit, d.lpfHiLimit);
 };
 

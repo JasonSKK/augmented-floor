@@ -15,7 +15,7 @@ fork{
 	order =
 	[
 		["empty", 0],
-		[[2, \aug], [5, \aug], [1, \aug], [7, \aug], [3, \aug], [8, \aug], [6, \aug], [4, \aug],  [7, \od], [4, \od], [1, \od], [2, \od], [5, \od], [6, \od], [8, \od], [3, \od]].scramble; // randomise order for each participant
+		[ [2, \aug], [5, \aug], [1, \aug], [7, \aug], [3, \aug], [8, \aug], [6, \aug], [4, \aug], [7, \od], [4, \od], [1, \od], [2, \od], [5, \od], [6, \od], [8, \od], [3, \od]].scramble; // randomise order for each participant
 	];
 	
 	17.do{

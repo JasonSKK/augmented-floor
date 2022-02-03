@@ -31,7 +31,7 @@ SynthDef(\augmentedSteps, {| out = 0, bufnum, amp = 1, gain = 50, expThresh = (4
 	amp = expander * 3;
 
 	amp = Amplitude.ar(amp, 0.0, releaseTime);
-	
+	//rate.poll;
 	sig = PlayBuf.ar(
 		numChannels:1,
 		bufnum:bufnum,
