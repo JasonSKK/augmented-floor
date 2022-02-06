@@ -47,6 +47,7 @@ d = (); // preset dict
 	~voiceMsgLPEnd = Buffer.read(s, (~currPath +/+ "sounds/endLearningPhase.wav").standardizePath);
 	~voiceMsgLPRepeat = Buffer.read(s, (~currPath +/+ "sounds/learningPhaseRepeat.wav").standardizePath);
 	~voiceMsgExpStart = Buffer.read(s, (~currPath +/+ "sounds/startExpInstructions.wav").standardizePath);
+	~voiceMsgIntro = Buffer.read(s, (~currPath +/+ "sounds/intro.wav").standardizePath);
 };
 	
 

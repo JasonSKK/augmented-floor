@@ -1,4 +1,12 @@
 #+TITLE:IEM Augmented floor
 #+DATE:<2021-10-29 Fri 13:11>
 
+* Augmented floor
 
+An exporation of the general interactivity features of the interface (\cite) through the prism of auditory augmentation.
+
+** augmentation algorithm 
+
+** onset detection algorithm (Weger M. et al. /Schrödinger’s Box: an artifact to study the plausibility of
+
+auditory augmentations/)

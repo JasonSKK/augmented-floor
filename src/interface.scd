@@ -4,8 +4,8 @@ s.waitForBoot({
     var w, k;
 
     w = Window("Augmented steps").alwaysOnTop_(false);//Setting Up the Window
-    w.bounds_(Rect(0, 180, 600, 710));
-    w.view.background_(Color(0.0, 0.2, 0.3, 0.86));
+    w.bounds_(Rect(0, 150, 600, 730));
+    w.view.background_(Color(0.2, 0.2, 0.2, 0.66));
     w.front;
 
 	//Sliders
@@ -213,13 +213,13 @@ k[5].action_({
 	// master slider
 	~text[3].bounds_(Rect(380, 610, 210, 20)).string_("Master Vol").background_(Color(0.8,0.8,0.8));
 	// preset vol
-	~text[17].bounds_(Rect(380, 470, 210, 20)).string_("Output Vol Onset Detection").background_(Color.yellow(0.9));
-	~text[18].bounds_(Rect(380, 530, 210, 20)).string_("Output Vol Augmentation").background_(Color.new255(0, 191, 255));
+	~text[17].bounds_(Rect(380, 470, 210, 20)).string_("Output Vol Onset Detection").background_(Color.yellow(0.8));
+	~text[18].bounds_(Rect(380, 530, 210, 20)).string_("Output Vol Augmentation").background_(Color.red(0.8));
 	
 	// control sections -labels-
-	~text[0].bounds_(Rect(10, 10, 580, 20)).string_("Onset Detection").background_(Color.yellow(0.9));
+	~text[0].bounds_(Rect(10, 10, 580, 20)).string_("Onset Detection").background_(Color.yellow(0.8));
 	~text[7].bounds_(Rect(10, 440, 580, 20)).string_("Preset Selection");
-	~text[8].bounds_(Rect(10, 220, 580, 20)).string_("Agumentation").background_(Color.new255(0, 191, 255));
+	~text[8].bounds_(Rect(10, 220, 580, 20)).string_("Agumentation").background_(Color.red(0.8));
 
 	//augmentation
 	~text[9].bounds_(Rect(10, 260, 90, 20)).string_("Pre Gain");
@@ -498,7 +498,7 @@ k[5].action_({
 	// PLAY button O.D.
 	~playOD = Button(w, Rect(305,155,250,30)).states_([
 		["PLAY OD", Color.red(0.6), Color(0.7,0.7,0.7)],
-		["STOP OD" , Color.white(1.0), Color.red(0.6)],
+		["STOP OD" , Color.white(1.0), Color.green(0.6)],
 	]).font_(Font("Times New Roman", 12)).value_(0).action_({
 		|obj|
 		
@@ -534,7 +534,7 @@ k[5].action_({
 	// PLAY button Augmentation
 	~playAugSt = Button(w, Rect(305,385,250,30)).states_([
 		["PLAY Augmentation", Color.red(0.6), Color(0.7,0.7,0.7)],
-		["STOP Augmentation" , Color.white(1.0), Color.red(0.6)],
+		["STOP Augmentation" , Color.white(1.0), Color.green(0.6)],
 	]).font_(Font("Times New Roman", 12)).action_({
 		|obj|
 		// ~soundOD.collect{|i| i.free}; // free Buffer collection -- OD
@@ -563,7 +563,7 @@ k[5].action_({
 	// Participant ID
 	~participants = EZNumber(w, Rect(10,530,180,25), "  Participant ID ",ControlSpec(0, 1000, step:1), initVal:0, labelWidth: 120)
 	.font_(Font("Times New Roman", 14))
-	.setColors(Color(1.0,0.0,0.0,0.5), Color.black)
+	.setColors(Color(0.6,0.2,0.3), Color.black)
 	.action_({ |ez|
 		var file, path;
 		fork{
@@ -625,6 +625,18 @@ k[5].action_({
 		//~learningPhase.stop;
 		//});
 	});
+
+	// INSTRUCTIONS Button
+	~instructions = Button(w, Rect(10,690,250,30)).states_([
+		["PLAY INSTRUCTIONS", Color.yellow(1.0), Color(0.0,0.3,0.4)],
+		//["STOP OD" , Color.white(1.0), Color.red(0.6)],
+	]).font_(Font("Times New Roman", 12)).value_(0).action_({
+		|obj|
+		
+		e.voicePlayback.set(\gate, 0); // release playing synth
+		e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgIntro, \amp,1]); // play new one	
+	});
+
 		
 });
 
