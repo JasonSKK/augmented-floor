@@ -5,8 +5,8 @@
 
 An exporation of the general interactivity features of the interface (\cite) through the prism of auditory augmentation.
 
-** augmentation algorithm 
+** augmentation
 
-** onset detection algorithm (Weger M. et al. /Schrödinger’s Box: an artifact to study the plausibility of
+** onset detection (Weger M. et al. Schrödinger’s Box: an artifact to study the plausibility of
 
-auditory augmentations/)
+auditory augmentations)
