@@ -19,14 +19,14 @@ d.smoothing = 0.01;
 d.cutoffAugSt = 320.0;
 d.releaseTime = 0.1818;
 d.lpfAugSt = 19999;
-d.amplitudeLPFLo = 7000;
-d.lpfHiLimit = 13000;
+d.amplitudeLPFLo = 13000;
+d.lpfHiLimit = 18000;
 d.compressorThreshold = 2;
 
 // master
-d.masterVol = (18.0.neg);
+//d.masterVol = d.masterVol;
 d.outputVolOD = 0.4;
-d.outputVolAugSt = 0.4;
+d.outputVolAugSt = 2.0;
 // rate modulation OFF
 d.rateLo = 1.0; 
 d.rateHi = 1.0;

@@ -3,7 +3,7 @@
 
 * Augmented floor
 
-An exporation of the general interactivity features of the interface (\cite) through the prism of auditory augmentation.
+An exploration of the floor interface (\cite) through the prism of auditory augmentation.
 
 ** augmentation
 

@@ -51,9 +51,9 @@ SynthDef(\onsetDetection, {
 	var reg;
 	reg = SynthDef(\presetPlayback, {
 		arg
-		preGain = 1, amp = 0.1, masterAmp = 1.0, outputVol = d.outputVol, cutoffLPF = d.amplitudeLPFLo, rateLo = d.rateLo, rateHi = d.rateHi, on = 0, bufCollection;
-		var	trig, sig, buffer, /*bufCollection,*/ ampDet, env, nextVoice, spec, cutoff, rate;
-		//bufCollection = ~soundOD;
+		preGain = 1, amp = 0.1, masterAmp = 1.0, outputVol = d.outputVol, cutoffLPF = d.amplitudeLPFLo, rateLo = d.rateLo, rateHi = d.rateHi, on = 0;
+		var	trig, sig, buffer, bufCollection, ampDet, env, nextVoice, spec, cutoff, rate;
+		bufCollection = ~soundOD;
 
 		trig = In.ar(~velBus) * preGain;
 
@@ -73,7 +73,8 @@ SynthDef(\onsetDetection, {
 		env = Amplitude.ar(trig, attackTime: 0.0, releaseTime: 1.80); // envelope with instant attack and smooth release
 		
 		// random selection form buffer collection 	
-		buffer = Demand.ar(trig, 0, Dxrand(list: bufCollection, repeats: inf)); 
+		buffer = Demand.ar(trig, 0, Dxrand(list: bufCollection, repeats: inf));
+		//buffer.poll;
 
 		sig = PlayBufCF.ar(1, buffer, rate: rate, trigger: trig) * outputVol * amp * 4; // amp was from sclang side amp update
 		sig = sig!2 * masterAmp * env;
@@ -84,6 +85,9 @@ SynthDef(\onsetDetection, {
 		
 		sig = HPF.ar(sig, 30); // 20 HPF filter
 		sig = LeakDC.ar(sig, 0.995); // DC
+
+		sig = Compander.ar(sig, sig, 0.6, 1, 0.5);
+
 		Out.ar(0, sig);		
 	});
 

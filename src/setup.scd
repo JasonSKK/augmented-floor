@@ -55,6 +55,7 @@ d = (); // preset dict
 
 ~finalRating = Array(50); // preset rating values
 ~rating = nil;
+~time = nil;
 ~participantID = 1; // participant ID init
 ~presetNum = -1; // preset number initialisation: GUI
 ~startFlag = false; // if experiment has started
@@ -98,7 +99,7 @@ d.lpfHiLimit = 13000;
 d.compressorThreshold = 2.dbamp;
 
 // master
-d.masterVol = (18.0.neg);
+d.masterVol = (10.0.neg);
 d.outputVolOD = 1.0;
 d.outputVolAugSt = 1.0;
 d.rateLo = 0.7;
@@ -106,8 +107,7 @@ d.rateHi = 1.3;
 
 // ======= end of preset initialisation =======
 
-a = s.volume; // server vol
-a.volume = 0;
+//a = s.volume; // server vol
 
 fork{
 	0.15.wait;

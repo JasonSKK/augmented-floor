@@ -5,7 +5,7 @@ s.waitForBoot({
 
     w = Window("Augmented steps").alwaysOnTop_(false);//Setting Up the Window
     w.bounds_(Rect(0, 150, 600, 730));
-    w.view.background_(Color(0.2, 0.2, 0.2, 0.66));
+    w.view.background_(Color(0.0,0.2,0.3,0.86));//Color(0.2, 0.2, 0.2, 0.66));
     w.front;
 
 	//Sliders
@@ -60,6 +60,7 @@ s.waitForBoot({
 		var val;
 		val = obj.value.linlin(0.0, 1.0, -90.0, 0.0);
 		a.volume = val;
+		a.volume.postln;
 		[\masterOut, val, "db"].postln;
 		d.masterVol = val; // upd dictionary
 		~masterOut_NB.value_(val);
@@ -605,7 +606,7 @@ k[5].action_({
 
 		//play voice msg 
 		e.voicePlayback.set(\gate, 0); // release playing synth
-		e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgExpStart, \amp,1]); // play new one
+		e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgExpStart, \amp,3]); // play new one
 		~sample = 0; // set sample to first sound when 2nd participant
 		{~preset.valueAction_(~soundCollection[~participantID][~sample][0])}.defer(0.0); // start with the first sound of the LATIN SQUARE ARRAY
 		~algorithm.value(~soundCollection[~participantID][~sample][1]); // switch select aug or od according to the symbol value within the latin square array
@@ -634,7 +635,7 @@ k[5].action_({
 		|obj|
 		
 		e.voicePlayback.set(\gate, 0); // release playing synth
-		e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgIntro, \amp,1]); // play new one	
+		e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgIntro, \amp,3]); // play new one	
 	});
 
 		

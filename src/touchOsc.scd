@@ -30,7 +30,7 @@ OSCdef(\next, {
 					
 					// end of the experiment notification playback
 					e.voicePlayback.set(\gate, 0); // release playing synth
-					e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgEnd, \amp,1]); // play new one
+					e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgEnd, \amp,3]); // play new one
 					
 				};
 				{
@@ -78,7 +78,7 @@ OSCdef(\next, {
 		if((val == 1) && (~endFlag == false)){ // prevent double triggers
 			// please rate your sound notification
 			e.voicePlayback.set(\gate, 0); // release playing synth
-			e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsg, \amp,1]); // play new one
+			e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsg, \amp,3]); // play new one
 		};
 	});
 	

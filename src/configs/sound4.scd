@@ -24,8 +24,8 @@ d.lpfHiLimit = 13000;
 d.compressorThreshold = 2;
 
 // master
-d.masterVol = (18.0.neg);
-d.outputVolOD = 0.35;
+//d.masterVol = d.masterVol;
+d.outputVolOD = 0.45;
 d.outputVolAugSt = 0.35;
 // rate modulation ON
 d.rateLo = 0.7; 

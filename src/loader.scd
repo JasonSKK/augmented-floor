@@ -72,7 +72,9 @@ s.waitForBoot{
 	StageLimiter.activate;
 
 	// server meter
-	s.meter;
+	m = Window.new("Server Levels", Rect(1000, 600, 560, 250));
+	ServerMeterView.new(s, m, 0@0, 24, 2);
+	m.front;
 };
 
 

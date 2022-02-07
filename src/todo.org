@@ -1,6 +1,8 @@
 * TODO
-1. add voice where needed
-2. apply latin squares, 4 the number of participants (20?)
+1. time stamp in the file, for each preset
+2. overall time for the entire experiment
+3. store a recording of a mono (sum 24) file 2kHz sampling rate
+
 
 
 

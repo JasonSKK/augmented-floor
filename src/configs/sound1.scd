@@ -25,9 +25,9 @@ d.compressorThreshold = 2;
 
 
 // master
-d.masterVol = (18.0.neg);
-d.outputVolOD = 0.15;
-d.outputVolAugSt = 0.8;
+//d.masterVol = (18.0.neg);
+d.outputVolOD = 0.65;
+d.outputVolAugSt = 1.25;
 d.rateLo = 1.0;
 d.rateHi = 1.0;
 

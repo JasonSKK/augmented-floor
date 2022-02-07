@@ -5,7 +5,7 @@ fork{
 	var order;
 	// play introduction voice
 	e.voicePlayback.set(\gate, 0); // release playing synth
-	e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgLPStart, \amp,1]); // play new one
+	e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgLPStart, \amp,3]); // play new one
 
 	8.wait;
 	
@@ -37,14 +37,14 @@ fork{
 				};
 				{"LEARNING PHASE ENDED".postln;}.defer(0.5); // post
 				//
-				2.wait;
+				5.wait;
 				// MSG1 "THE LEARNIG PHASE HAS ENDED"
 				e.voicePlayback.set(\gate, 0); // release playing synth
-				e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgLPEnd, \amp,1]); // play new one
-				5.wait; // wait for msg 1 to finish
+				e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgLPEnd, \amp,3]); // play new one
+				4.5.wait; // wait for msg 1 to finish
 				// MSG2 "LEARNING PHASE REPEAT"
 				e.voicePlayback.set(\gate, 0);
-				e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgLPRepeat, \amp,1]); // play new one
+				e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgLPRepeat, \amp,3]); // play new one
 
 				// stop all synths
 				defer{~preset.valueAction_(0); // set preset to number 0 -- silence
@@ -54,7 +54,7 @@ fork{
 			}
 		);
 		i = i + 1; // next preset -- learning phase collection
-		1.wait; // wait 5 sec for the participant to try out the preset
+		5.wait; // wait 5 sec for the participant to try out the preset
 	};
 	
 };
