@@ -67,7 +67,7 @@ s.waitForBoot{
 	(~currPath +/+"learningPhase.scd").standardizePath.load;
 	0.2.wait;
 	
-	// Limiter 
+	// Limiter x
 	Safety.setLimit(0.9);
 	StageLimiter.activate;
 

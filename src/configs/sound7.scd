@@ -1,15 +1,17 @@
 //steps on Mars
 
-Buffer.freeAll;
-~voiceBuffersLoad.value();
+//Buffer.freeAll;
+//~voiceBuffersLoad.value();
+~soundOD.collect{|i|i.free};
+~soundAugSt.free;
 
 // load preset config -- update dict
 // onset detection
-d.preGainOD = 90;
-d.expThreshOD = 8.neg;
+d.preGainOD = 55;
+d.expThreshOD = 14.neg;
 d.threshLoOD = -3.787878787878;
 d.threshHiOD = 10.0;
-d.cutoffOD = 425.0;
+d.cutoffOD = 435.0;
 d.releaseTimeOD = 0.1;
 
 // augmentation
@@ -26,7 +28,7 @@ d.compressorThreshold = 2;
 // master
 //d.masterVol = d.masterVol;
 d.outputVolOD = 0.5;
-d.outputVolAugSt = 0.08;
+d.outputVolAugSt = 0.33;
 // rate modulation ON
 d.rateLo = 0.7; 
 d.rateHi = 1.3;

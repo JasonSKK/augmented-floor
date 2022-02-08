@@ -51,7 +51,7 @@ d = (); // preset dict
 		inf.do {
 			~time = Ndef(\timer).bus.getSynchronous;
 			~time = ~time.round(0.01);
-			(0.05).wait;
+			(0.01).wait;
 		}
 	};
 
@@ -69,7 +69,7 @@ d = (); // preset dict
 		inf.do {
 			~overallTime = Ndef(\overallT).bus.getSynchronous;
 			~overallTime = ~overallTime.round(0.01);
-			(0.05).wait;
+			(0.01).wait;
 		}
 	};
 
@@ -104,6 +104,7 @@ d = (); // preset dict
 ~trigBus = Bus.audio(s,1); // bus for triggering
 ~gateBus = Bus.audio(s,1);
 ~specBus = Bus.audio(s,1); // bus for spectral modulation
+~recBus = Bus.audio(s,1); 
 
 // AUGMENTATION: allocate empty buffer 
 ~soundAugSt = Buffer.readChannel(s, ~currPath +/+ "sounds/silence.wav", channels:0);
@@ -172,6 +173,16 @@ fork{
 	
 	// init synth variable
 	e.voicePlayback = Synth(\voicePlayback, \gate,0);
+
+	// for recording
+	SynthDef(\rec, {
+		var in;
+		in = Mix(SoundIn.ar((0..23)));
+		Out.ar(~recBus, in);
+	}).add;
+	s.sync;
+	Synth(\rec, addAction:\addToTail);
+
 };
 
 "INIT FILE LOADED".postln;	

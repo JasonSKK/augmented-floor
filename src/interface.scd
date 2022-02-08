@@ -466,9 +466,8 @@ k[5].action_({
 	.font_(Font("Times New Roman", 14))
 	.setColors(Color(1.0,1.0,0.7,0.5), Color.black)
 	.action_({ |ez|
-		var temp, button;		
+		var temp, button;
 		fork{
-			
 			// load preset
 			~presetNum = ez.value;
 			
@@ -493,10 +492,8 @@ k[5].action_({
 					\rateHi, d.rateHi
 				], addAction: \addToTail); // start playback synth
 			});
-			
 			Ndef(\timer).clear; // stop var ~time register routine
 			~timer.value(); // initialise - run timer
-			
 		};
 	});
 
@@ -583,7 +580,7 @@ k[5].action_({
 			s.sync;
 			file = File(path,"w");
 			s.sync;
-			file.write(~finalRating.asCompileString); // write array w ratings to the file
+			file.write(~finalRating.asCompileString+~overallTime.asCompileString); // write array w ratings to the file
 			s.sync;
 			file.close;
 			["RATINGS FOR EACH PRESET WRITTEN TO DISK", ~finalRating.collect({|i| i[3]}) ].postln; // post only the rating values
@@ -597,24 +594,31 @@ k[5].action_({
 			~endFlag = false;
 
 			~algorithm.value(~soundCollection[~participantID][~sample][1]); // switch select aug or od
-			
+
+			Ndef(\overallT).clear; // stop var ~time register routine
+			~ovTimer.value(); // initialise - run OVERALL timer
 		};
 	});
 
 	// START experiment button
 	~start = Button(w, Rect(10,570,250,30)).states_([
 		["START EXPERIMENT", Color.white, Color.red(0.4)],
-		//["STOP" , Color.red, Color.gray(0.8)],
+		["STOP" , Color.red, Color.gray(0.8)],
 	]).font_(Font("Times New Roman", 12)).action_({
 		|obj|
+		obj.postln;
 
+		if(obj.value == 1,{
 		//play voice msg 
 		e.voicePlayback.set(\gate, 0); // release playing synth
 		e.voicePlayback = Synth(\voicePlayback, [\gate, 1, \bufnum, ~voiceMsgExpStart, \amp,3]); // play new one
 		~sample = 0; // set sample to first sound when 2nd participant
 		{~preset.valueAction_(~soundCollection[~participantID][~sample][0])}.defer(0.0); // start with the first sound of the LATIN SQUARE ARRAY
 		~algorithm.value(~soundCollection[~participantID][~sample][1]); // switch select aug or od according to the symbol value within the latin square array
-
+			fork{9.wait; s.record(~currPath +/+"/rating/recs/participant"++~participantID++".wav", ~recBus, 1)}; // start recording file after instructions voice msg
+		},{
+			s.stopRecording; // stop rec
+		})
 	});
 
 	// learning phase button

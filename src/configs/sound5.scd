@@ -1,7 +1,9 @@
 //snow
 
-Buffer.freeAll;
-~voiceBuffersLoad.value();
+//Buffer.freeAll;
+//~voiceBuffersLoad.value();
+~soundOD.collect{|i|i.free};
+~soundAugSt.free;
 
 // load preset config -- update dict
 // onset detection
@@ -25,8 +27,8 @@ d.compressorThreshold = 2;
 
 // master
 //d.masterVol = d.masterVol;
-d.outputVolOD = 0.3;
-d.outputVolAugSt = 0.5;
+d.outputVolOD = 0.5;
+d.outputVolAugSt = 0.8;
 // rate modulation OFF
 d.rateLo = 1.0; 
 d.rateHi = 1.0;

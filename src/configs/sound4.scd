@@ -1,7 +1,9 @@
 //star wars
 
-Buffer.freeAll;
-~voiceBuffersLoad.value();
+//Buffer.freeAll;
+//~voiceBuffersLoad.value();
+~soundOD.collect{|i|i.free};
+~soundAugSt.free;
 
 // load preset config -- update dict
 // onset detection
@@ -25,8 +27,8 @@ d.compressorThreshold = 2;
 
 // master
 //d.masterVol = d.masterVol;
-d.outputVolOD = 0.45;
-d.outputVolAugSt = 0.35;
+d.outputVolOD = 0.65;
+d.outputVolAugSt = 0.55;
 // rate modulation ON
 d.rateLo = 0.7; 
 d.rateHi = 1.3;

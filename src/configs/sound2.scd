@@ -1,7 +1,9 @@
 // giant steps
 
-Buffer.freeAll;
-~voiceBuffersLoad.value();
+//Buffer.freeAll;
+//~voiceBuffersLoad.value();
+~soundOD.collect{|i|i.free};
+~soundAugSt.free;
 
 // load preset config -- update dict
 // onset detection
@@ -14,7 +16,7 @@ d.releaseTimeOD = 0.9191;
 
 // augmentation
 d.preGainAugSt = 25;
-d.expThreshAugSt = 51.neg;
+d.expThreshAugSt = 48.neg;
 d.smoothing = 0.01;
 d.cutoffAugSt = 320.0;
 d.releaseTime = 0.3030;
@@ -25,8 +27,8 @@ d.compressorThreshold = 2;
 
 // master
 //d.masterVol = d.masterVol;
-d.outputVolOD = 4.2;
-d.outputVolAugSt = 1.85;
+d.outputVolOD = 4.0;
+d.outputVolAugSt = 1.25;
 // rate modulation ON
 d.rateLo = 0.7; 
 d.rateHi = 1.3;

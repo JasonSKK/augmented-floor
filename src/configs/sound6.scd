@@ -1,7 +1,9 @@
 // water
 
-Buffer.freeAll;
-~voiceBuffersLoad.value();
+//Buffer.freeAll;
+//~voiceBuffersLoad.value();
+~soundOD.collect{|i|i.free};
+~soundAugSt.free;
 
 // load preset config -- update dict
 // onset detection
