@@ -59,8 +59,8 @@ s.waitForBoot({
         |obj|
 		var val;
 		val = obj.value.linlin(0.0, 1.0, -90.0, 0.0);
-		a.volume = val;
-		a.volume.postln;
+		s.volume = val;
+		s.volume.postln;
 		[\masterOut, val, "db"].postln;
 		d.masterVol = val; // upd dictionary
 		~masterOut_NB.value_(val);
@@ -493,6 +493,10 @@ k[5].action_({
 					\rateHi, d.rateHi
 				], addAction: \addToTail); // start playback synth
 			});
+			
+			Ndef(\timer).clear; // stop var ~time register routine
+			~timer.value(); // initialise - run timer
+			
 		};
 	});
 

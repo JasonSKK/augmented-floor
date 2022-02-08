@@ -23,8 +23,8 @@ OSCdef(\next, {
 				"all samples were completed -- invite next participant".postln;
 				if(~endFlag == false){ // store only once
 
-					~finalRating.add([\participantID, ~participantID, algoFlag, "preset"++presetNum.asSymbol, ~rating]); // will be evaluated only for the first sample
-					["RATING STORED", "PRESET", algoFlag, presetNum, \value, ~rating].postln; // report msg
+					~finalRating.add([\participantID, ~participantID, algoFlag, "preset"++presetNum.asSymbol, ~rating, \presetTime, ~time]); // will be evaluated only for the first sample
+					["RATING STORED", "PRESET", algoFlag, presetNum, \value, ~rating, \presetTime, ~time].postln; // report msg
 					~rating = nil; // reset rating var (for the voiceMsg playback) after a while
 					~endFlag = true; // the last val was stored
 					
@@ -42,8 +42,8 @@ OSCdef(\next, {
 			},{
 
 				if(~sample <= 15){
-					~finalRating.add([\participantID, ~participantID, algoFlag, "preset"++presetNum.asSymbol, ~rating]); // will be evaluated only for the first sample
-					{["RATING STORED", "PRESET", algoFlag, presetNum, \value, tempRating].postln}.defer(0.0); // report msg for storing first preset
+					~finalRating.add([\participantID, ~participantID, algoFlag, "preset"++presetNum.asSymbol, ~rating, \presetTime, ~time]); // will be evaluated only for the first sample
+					{["RATING STORED", "PRESET", algoFlag, presetNum, \value, tempRating, \presetTime, ~time].postln}.defer(0.0); // report msg for storing first preset
 					~rating = nil; // set rating to nil
 				};
 				

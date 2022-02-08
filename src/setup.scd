@@ -19,7 +19,6 @@ d = (); // preset dict
 	temp;
 };
 
-
 ~algorithm = { | algorithm |
 	algorithm.postln;
 	switch(algorithm,
@@ -40,6 +39,42 @@ d = (); // preset dict
 	);
 };
 
+~timer = { // time for each preset
+	Ndef(\timer, { // count time
+		| trigger = 0 |
+		var trig, timer;
+		trig = Impulse.kr(trigger);
+		timer = Sweep.kr(trig);
+	});
+
+	fork{ // reg val to variable
+		inf.do {
+			~time = Ndef(\timer).bus.getSynchronous;
+			~time = ~time.round(0.01);
+			(0.05).wait;
+		}
+	};
+
+};
+
+~ovTimer = { // for overall experiment time	
+	Ndef(\overallT, { // count time
+		| trigger = 0 |
+		var trig, timer;
+		trig = Impulse.kr(trigger);
+		timer = Sweep.kr(trig);
+	});
+
+	fork{ // reg val to variable
+		inf.do {
+			~overallTime = Ndef(\overallT).bus.getSynchronous;
+			~overallTime = ~overallTime.round(0.01);
+			(0.05).wait;
+		}
+	};
+
+};
+
 // load voice buffers
 ~voiceBuffersLoad = {~voiceMsg = Buffer.read(s, (~currPath +/+ "sounds/voiceMsg.wav").standardizePath);
 	~voiceMsgEnd = Buffer.read(s, (~currPath +/+ "sounds/voiceMsgEnd.wav").standardizePath);
@@ -52,7 +87,6 @@ d = (); // preset dict
 	
 
 // INIT: environmental vars
-
 ~finalRating = Array(50); // preset rating values
 ~rating = nil;
 ~time = nil;
@@ -109,13 +143,16 @@ d.rateHi = 1.3;
 
 //a = s.volume; // server vol
 
+
 fork{
+	0.1.wait;
+	s.volume = d.masterVol; // set init master vol
 	0.15.wait;
 	s.sync;
 	~voiceBuffersLoad.value();
 	0.5.wait;
 	s.sync;
-
+	
 	// voice message playback synth
 	SynthDef(\voicePlayback,{
 		| bufnum, trigger = 0, amp = 0.0, gate = 0 |
