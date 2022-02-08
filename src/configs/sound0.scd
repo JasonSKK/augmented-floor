@@ -1,4 +1,6 @@
 //alloc empty buffer
+
+Ndef(\overallT).clear; // stop var ~time register routine
 s.stopRecording;
 //Buffer.freeAll;
 //~voiceBuffersLoad.value();

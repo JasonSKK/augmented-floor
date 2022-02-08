@@ -595,8 +595,6 @@ k[5].action_({
 
 			~algorithm.value(~soundCollection[~participantID][~sample][1]); // switch select aug or od
 
-			Ndef(\overallT).clear; // stop var ~time register routine
-			~ovTimer.value(); // initialise - run OVERALL timer
 		};
 	});
 
@@ -615,7 +613,10 @@ k[5].action_({
 		~sample = 0; // set sample to first sound when 2nd participant
 		{~preset.valueAction_(~soundCollection[~participantID][~sample][0])}.defer(0.0); // start with the first sound of the LATIN SQUARE ARRAY
 		~algorithm.value(~soundCollection[~participantID][~sample][1]); // switch select aug or od according to the symbol value within the latin square array
-			fork{9.wait; s.record(~currPath +/+"/rating/recs/participant"++~participantID++".wav", ~recBus, 1)}; // start recording file after instructions voice msg
+			fork{9.wait;
+				Ndef(\overallT).clear; // stop var ~time register routine
+				~ovTimer.value(); // initialise - run OVERALL timer
+				s.record(~currPath +/+"/rating/recs/participant"++~participantID++".wav", ~recBus, 1)}; // start recording file after instructions voice msg
 		},{
 			s.stopRecording; // stop rec
 		})
