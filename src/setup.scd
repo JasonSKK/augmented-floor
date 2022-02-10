@@ -69,7 +69,7 @@ d = (); // preset dict
 		inf.do {
 			~overallTime = Ndef(\overallT).bus.getSynchronous;
 			~overallTime = ~overallTime.round(0.01);
-			~overallTime.postln;
+			//~overallTime.postln;
 			(0.01).wait;
 		}
 	};
