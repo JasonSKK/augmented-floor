@@ -5,16 +5,16 @@
 
 /Katharina Groß-Vogt, Iason Svoronos Kanavas & Marian Weger. /The Augmented Floor - Assessing Auditory Augmentation./ Audio Mostly Conference - A Conference on Interaction with Sound 2022, St. Pölten, Austria./
 
-[[./floor.png]]
+[[./pictures/floor.png]]
 
 ** (I) Envelope reusing
-[[./block_er.png]]
+[[./pictures/block_er.png]]
 
 ** Step-Sound Triggering
 We used the novel real time onset detection technique suggested by Marian Weger, Iason Svoronos-Kanavas & Robert Höldrich. /Schrödinger's box: an artifact to study the limits of plausibility in auditory augmentations./ Audio Mostly Conference - A Conference on Interaction with Sound 2022, St. Pölten, Austria.
 
 * Interface
 + Interface on the smartphone, we used TouchOSC.
-[[./smartphone-interface.png]]
+[[./pictures/smartphone-interface.png]]
 + Interface on the computer screen for the parameter configuration
-[[./interface.png]]
+[[./pictures/interface.png]]
