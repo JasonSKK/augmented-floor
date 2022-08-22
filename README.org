@@ -1,7 +1,7 @@
-#+TITLE:The Augmented Floor - Assessing Auditory Augmentation
+#+TITLE:The Augmented Floor - Assessing Auditory Augmentation - Institute of Electronic Music and Acoustics (IEM), University of Music and Performing Arts Graz
 #+DATE:<2021-10-29 Fri 13:11>
 
-* Augmented floor, Institute of Electronic Music and Acoustics (IEM), University of Music and Performing Arts Graz
+* Publication
 
 /Katharina Groß-Vogt, Iason Svoronos Kanavas & Marian Weger. /The Augmented Floor - Assessing Auditory Augmentation./ Audio Mostly Conference - A Conference on Interaction with Sound 2022, St. Pölten, Austria./
 
