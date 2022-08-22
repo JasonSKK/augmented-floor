@@ -39,7 +39,7 @@ s.waitForBoot{
 	0.2.wait;
 	
 	// Onset Detection Patch load
-	s.sync;
+	s.sync; 
 	(~currPath +/+"onsetDetection.scd").standardizePath.load;
 	0.2.wait;
 	// load sound0 empty buffer

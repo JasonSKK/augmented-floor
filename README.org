@@ -1,12 +1,20 @@
-#+TITLE:IEM Augmented floor
+#+TITLE:The Augmented Floor - Assessing Auditory Augmentation
 #+DATE:<2021-10-29 Fri 13:11>
 
-* Augmented floor
+* Augmented floor, Institute of Electronic Music and Acoustics (IEM), University of Music and Performing Arts Graz
 
-An exploration of the floor interface (\cite) through the prism of auditory augmentation.
+/Katharina Groß-Vogt, Iason Svoronos Kanavas & Marian Weger. /The Augmented Floor - Assessing Auditory Augmentation./ Audio Mostly Conference - A Conference on Interaction with Sound 2022, St. Pölten, Austria./
 
-** augmentation
+[[./floor.png]]
 
-** onset detection (Weger M. et al. Schrödinger’s Box: an artifact to study the plausibility of
+** (I) Envelope reusing
+[[./block_er.png]]
 
-auditory augmentations)
+** Step-Sound Triggering
+We used the novel real time onset detection technique suggested by Marian Weger, Iason Svoronos-Kanavas & Robert Höldrich. /Schrödinger's box: an artifact to study the limits of plausibility in auditory augmentations./ Audio Mostly Conference - A Conference on Interaction with Sound 2022, St. Pölten, Austria.
+
+* Interface
++ Interface on the smartphone, we used TouchOSC.
+[[./smartphone-interface.png]]
++ Interface on the computer screen for the parameter configuration
+[[./interface.png]]
