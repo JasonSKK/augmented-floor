@@ -11,7 +11,7 @@ Katharina Groß-Vogt, Iason Svoronos Kanavas, Marian Weger and Clemens Amon. 202
 [[./pictures/block_er.png]]
 
 ** Step-Sound Triggering
-We used the novel real time onset detection technique by Marian Weger, Iason Svoronos-Kanavas & Robert Höldrich. /Schrödinger's box: an artifact to study the limits of plausibility in auditory augmentations./ Audio Mostly Conference - A Conference on Interaction with Sound 2022, St. Pölten, Austria.
+We used the novel real time onset detection technique by Marian Weger, Iason Svoronos-Kanavas, and Robert Höldrich. 2022. /Schrödinger’s box: an artifact to study the limits of plausibility in auditory augmentations/. In AudioMostly 2022 (AM ’22), September 6–9, 2022, St. Pölten, Austria. ACM, New York, NY, USA, 8 pages. https://doi.org/10.1145/3561212.3561222
 
 * Interface
 + Interface on the smartphone, we used TouchOSC.
